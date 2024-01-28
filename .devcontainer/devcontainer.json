@@ -7,15 +7,12 @@
 			"WORKSPACE": "${containerWorkspaceFolder}"
 		}
     },
-    "remoteUser": "streamlit",
-	"runArgs": [
-
-	],
     "features": {
         "node": {
             "version": "lts"
         }
-    },
+    }
+    ,
     "customizations": {
 		"vscode": {
 			"extensions": [
@@ -25,7 +22,8 @@
 		}
 	},
     "forwardPorts": [
-        // Include any ports to forward
+        3000,
+        8501
     ],
     "postCreateCommand": "chmod +x ./scripts/init-devcontainer.sh && ./scripts/init-devcontainer.sh ${containerWorkspaceFolder}",
 }

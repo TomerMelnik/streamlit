@@ -13,31 +13,26 @@ WORKSPACE_PATH="$1"
 
 
 cd "$WORKSPACE_PATH"
-. $NVM_DIR/nvm.sh
-nvm install
-nvm use
 
-
-# Initialize React
-yarn install
-
-# Return to the workspace root
-cd "$WORKSPACE_PATH"
-
-python3 -m venv venv
-source venv/bin/activate
-
-# Upgrade pip and install Python dependencies
-pip install --upgrade pip
-make python-init
-
-
-# Install Python dependencies
-pip install -r lib/dev-requirements.txt
-pip install -r lib/test-requirements.txt
 
 # Generate Protobufs
 export PATH="$WORKSPACE_PATH/vendor/protoc-3.20.3-linux-x86_64/bin:$PATH"
 make protobuf
 
+# Initialize React
+cd "$WORKSPACE_PATH/frontend"
+yarn install
+
+# Return to the workspace root
+cd "$WORKSPACE_PATH"
+
+# Set up the Python environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install Python dependencies
+make all-devel
+
+
 echo "Dev container setup complete."
+
