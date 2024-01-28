@@ -1,0 +1,31 @@
+{
+    "dockerFile": "Dockerfile",
+    "name": "Streamlit Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+			"WORKSPACE": "${containerWorkspaceFolder}"
+		}
+    },
+    "remoteUser": "streamlit",
+	"runArgs": [
+
+	],
+    "features": {
+        "node": {
+            "version": "lts"
+        }
+    },
+    "customizations": {
+		"vscode": {
+			"extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+			]
+		}
+	},
+    "forwardPorts": [
+        // Include any ports to forward
+    ],
+    "postCreateCommand": "chmod +x ./scripts/init-devcontainer.sh && ./scripts/init-devcontainer.sh ${containerWorkspaceFolder}",
+}
